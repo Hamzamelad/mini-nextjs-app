@@ -15,23 +15,26 @@ async function testConnection() {
 
 export async function GET(request: NextRequest) {
 
-    try {
-        await db.$connect();
-        return NextResponse.json({ success: '✅ Connected to the database successfully!' })
-    } catch (error) {
-        return NextResponse.json({ '❌ Failed to connect': error })
-    } finally {
-        await db.$disconnect();
-    }
+    return NextResponse.json({success: "api works"})
+
+    // try {
+    //     await db.$connect();
+    //     return NextResponse.json({ success: '✅ Connected to the database successfully!' })
+    // } catch (error) {
+    //     return NextResponse.json({ '❌ Failed to connect': error })
+    // } finally {
+    //     await db.$disconnect();
+    // }
 
 
-    try {
-        const users = await db.user.findMany();
+//     try {
+//         const users = await db.user.findMany();
 
-        return NextResponse.json(users)
-    } catch (error) {
-        return NextResponse.json(error)
-    }
+//         return NextResponse.json(users)
+//     } catch (error) {
+//         return NextResponse.json(error)
+//     }
+
 }
 
 export async function POST(request: NextRequest) {
