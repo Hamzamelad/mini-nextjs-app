@@ -1,14 +1,15 @@
 import { NextResponse, NextRequest } from "next/server";
 import db from "@/lib/db";
-import { User } from "@prisma/client";
 
 
 export async function GET(request: NextRequest) {
-    const users = await db.user.findMany();
+    try {
+        const users = await db.user.findMany();
 
-    if (users) return NextResponse.json(users)
-
-    return NextResponse.json({ error: 'Something webt wrong!' })
+        return NextResponse.json(users)
+    } catch (error) {
+        return NextResponse.json(error)
+    }
 }
 
 export async function POST(request: NextRequest) {
@@ -18,10 +19,13 @@ export async function POST(request: NextRequest) {
         { username: 'mark', email: 'mark@g.com' },
         { username: 'jemmy', email: 'jemmy@g.com' }
     ]
-    const users = await db.user.createManyAndReturn({ data: dummyUsers });
 
-    if (users) return NextResponse.json(users)
+    try {
+        const users = await db.user.createManyAndReturn({ data: dummyUsers });
 
-    return NextResponse.json({ error: 'Something webt wrong!' })
+        return NextResponse.json(users)
+    } catch (error) {
+        return NextResponse.json(error)
+    }
 
 }
