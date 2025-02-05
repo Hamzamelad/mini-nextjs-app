@@ -7,14 +7,14 @@ const Page = () => {
     const [users, setUsers] = useState([]);
 
     const handleGetUsers = async () => {
-        const res = await fetch('http://test.nwgd.ly/api/user')
+        const res = await fetch('https://test.nwgd.ly/api/user')
         const users = await res.json();
 
         if (users) setUsers(users)
     }
 
     const handleCreateUsers = async () => {
-        const res = await fetch('http://test.nwgd.ly/api/user', { method: 'post' })
+        const res = await fetch('https://test.nwgd.ly/api/user', { method: 'post' })
         const users = await res.json();
 
         if (users) setUsers(users)
