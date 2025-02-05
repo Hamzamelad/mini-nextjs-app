@@ -1,21 +1,19 @@
 import { NextResponse, NextRequest } from "next/server";
 import db from "@/lib/db";
+import { NextApiRequest, NextApiResponse } from "next";
 
-async function testConnection() {
-    try {
-        await db.$connect();
-        return ('✅ Connected to the database successfully!');
-    } catch (error) {
-        return { '❌ Failed to connect:': error }
-    } finally {
-        await db.$disconnect();
-    }
+type ResponseData = {
+    message: string
 }
 
 
-export async function GET(request: NextRequest) {
 
-    return NextResponse.json({success: "api works"})
+// export async function GET(
+//     req: NextApiRequest,
+//     res: NextApiResponse<ResponseData>
+// ) {
+
+//     res.status(200).json({ message: 'Hello from Next.js!' })
 
     // try {
     //     await db.$connect();
@@ -27,15 +25,15 @@ export async function GET(request: NextRequest) {
     // }
 
 
-//     try {
-//         const users = await db.user.findMany();
+    //     try {
+    //         const users = await db.user.findMany();
 
-//         return NextResponse.json(users)
-//     } catch (error) {
-//         return NextResponse.json(error)
-//     }
+    //         return NextResponse.json(users)
+    //     } catch (error) {
+    //         return NextResponse.json(error)
+    //     }
 
-}
+// }
 
 export async function POST(request: NextRequest) {
 
