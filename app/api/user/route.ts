@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
 
     if (users) return NextResponse.json(users)
 
-    return NextResponse.error
+    return NextResponse.json({ error: 'Something webt wrong!' })
 }
 
 export async function POST(request: NextRequest) {
@@ -22,5 +22,6 @@ export async function POST(request: NextRequest) {
 
     if (users) return NextResponse.json(users)
 
-    return NextResponse.error
+    return NextResponse.json({ error: 'Something webt wrong!' })
+
 }
