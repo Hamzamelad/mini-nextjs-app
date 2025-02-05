@@ -1,8 +1,30 @@
 import { NextResponse, NextRequest } from "next/server";
 import db from "@/lib/db";
 
+async function testConnection() {
+    try {
+        await db.$connect();
+        return ('✅ Connected to the database successfully!');
+    } catch (error) {
+        return { '❌ Failed to connect:': error }
+    } finally {
+        await db.$disconnect();
+    }
+}
+
 
 export async function GET(request: NextRequest) {
+
+    try {
+        await db.$connect();
+        return NextResponse.json({ success: '✅ Connected to the database successfully!' })
+    } catch (error) {
+        return NextResponse.json({ '❌ Failed to connect': error })
+    } finally {
+        await db.$disconnect();
+    }
+
+
     try {
         const users = await db.user.findMany();
 
